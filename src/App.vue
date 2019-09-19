@@ -21,9 +21,7 @@
       </v-navigation-drawer>
 
       <v-container fluid class="d-flex">
-        <div v-for="(box, i) in boxes" :key="i">
-          <Box parameters={box}>{{i}}</Box>
-        </div>
+        <Box :params="boxes" />
       </v-container>
 
     </v-content>
@@ -32,7 +30,39 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Box from './components/Box.vue';
+import Box, { BoxParams } from './components/Box.vue';
+
+const initial: BoxParams[] = [
+  {
+    params: {
+      flex: true,
+      number: '1',
+    },
+    children: [
+      {
+        params: {
+          flex: false,
+          number: '1-1',
+        },
+        children: [],
+      },
+      {
+        params: {
+          flex: true,
+          number: '1-2',
+        },
+        children: [],
+      },
+    ],
+  },
+  {
+    params: {
+     flex: false,
+     number: '2',
+    },
+    children: [],
+  },
+];
 
 export default Vue.extend({
   name: 'App',
@@ -41,7 +71,7 @@ export default Vue.extend({
   },
   data: () => ({
     drawer: false,
-    boxes: [1, 2, 3, [4, 5, 6]],
+    boxes: initial,
   }),
 });
 </script>
