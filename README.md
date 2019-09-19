@@ -1,1 +1,1 @@
-# frexbox-playground
+# flexbox-playground
